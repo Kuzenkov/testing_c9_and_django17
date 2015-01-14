@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'contacts',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -63,8 +64,8 @@ DATABASES = {
         'NAME': 'addressbook',
         'USER': 'postgres',
         'PASSWORD': 'xjbc1u64',
-        'HOST': '0.0.0.0',  
-        'PORT': '8080',    
+        'HOST': 'localhost',  
+        'PORT': '',    
     }
 }
 
