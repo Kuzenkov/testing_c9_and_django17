@@ -1,0 +1,9 @@
+<h1>Contacts</h1>
+
+<a href="{% url "contacts-new" %}">add contact</a>
+
+<ul>
+    {% for contact in object_list %}
+    <li class="contact">{{ contact }}</li>
+    {% endfor %}
+</ul>
