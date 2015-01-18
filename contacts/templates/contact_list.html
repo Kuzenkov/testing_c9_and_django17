@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
 <h1>Contacts</h1>
 
 <a href="{% url "contacts-new" %}">add contact</a>
@@ -7,3 +10,4 @@
     <li class="contact">{{ contact }}</li>
     {% endfor %}
 </ul>
+{% endblock %}
