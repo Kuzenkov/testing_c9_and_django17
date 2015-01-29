@@ -1,3 +1,5 @@
+# -*- encoding:utf-8 -*-
+
 """
 Django settings for test_app project.
 
@@ -8,6 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
+"""
+http://effectivedjango.com/latex/EffectiveDjango.pdf
+"""
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -15,6 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
+
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = 'django.contrib.auth.views.login'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '=4tnq*vrs@t=83su(tj0tj1yt0&ung#vgqne9uce=+ns7)1tjx'
@@ -65,7 +75,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'xjbc1u64',
         'HOST': 'localhost',  
-        'PORT': '',    
+        'PORT': '5432',    
     }
 }
 
@@ -81,6 +91,13 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+# Template files
+
+TEMPLATE_DIRS = (
+    'test_app/templates',
+)
 
 
 # Static files (CSS, JavaScript, Images)

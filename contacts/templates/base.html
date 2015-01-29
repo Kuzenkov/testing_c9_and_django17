@@ -4,6 +4,17 @@
         <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
     </head>
     <body>
+    <div>
+        <p>login: user, password: password </p> 
+    </div>
+    <div>
+    {{ user }}
+    {% if user.is_anonymous %}
+        <a href="{% url 'django.contrib.auth.views.login' %}">login</a>
+    {% else %}
+        <a href="{% url 'django.contrib.auth.views.logout' %}">logout</a>
+    {% endif %}
+    </div>
         {% block content %}
         {% endblock %}
         

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>{{ contact }}</h1>
+
+<p>Email: {{ contact.email }}</p>
+
+<a class="btn btn-primary" href="{% url "contacts-edit-addresses" pk=contact.id %}">Edit addresses for {{ contact.first_name }} </a>
+<br><br>
+<ul>
+{% for address in contact.address_set.all %}
+    <li>{{ address.address }}<br/>
+        {{ address.city }} {{ address.state }}<br/>
+        {{ address.postal_code }}
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock %}
