@@ -3,14 +3,36 @@
 {% block content %}
 <h1>Contacts</h1>
 
-<a class="btn btn-primary" href="{% url "contacts-new" %}">add contact</a>
-
 <ul>
-    {% for contact in object_list %}
+    <!--{% for contact in object_list %}
     <li class="contact">
         <a href="{{ contact.get_absolute_url }}">{{ contact }}</a>
         (<a href="{% url "contacts-edit" pk=contact.id %}">edit</a>)
     </li>
+    {% endfor %}-->
+    
+    {% for contact in object_list %}
+        <li class="contact">
+        <a href="{{ contact.get_absolute_url }}">{{ contact }}</a>
+        (<a href="{% url "contacts-edit" pk=contact.id %}">edit</a>)
+    </li>
     {% endfor %}
+    
+    <div class="pagination">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+            <a href="?page={{ object_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+        </span>
+
+        {% if object_list.has_next %}
+            <a href="?page={{ object_list.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+    
 </ul>
 {% endblock %}

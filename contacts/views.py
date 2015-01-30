@@ -6,6 +6,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from contacts.models import Contact
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 class LoggedInMixin(object):
@@ -14,14 +15,26 @@ class LoggedInMixin(object):
         return super(LoggedInMixin, self).dispatch(*args, **kwargs)
 
 
-
 class ListContactView(LoggedInMixin, ListView):
     model = Contact
     template_name = 'contact_list.html'
     
     def get_queryset(self):
-        return Contact.objects.filter(owner=self.request.user)
-
+        contact_list = Contact.objects.filter(owner=self.request.user)
+        
+        paginator = Paginator(contact_list, 5)
+        page = self.request.GET.get('page')
+        
+        try:
+            contacts = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            contacts = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            contacts = paginator.page(paginator.num_pages)
+        return contacts
+        
 
 class CreateContactView(LoggedInMixin, CreateView):
     model = Contact

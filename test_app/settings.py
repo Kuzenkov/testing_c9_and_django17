@@ -74,7 +74,7 @@ DATABASES = {
         'NAME': 'addressbook',
         'USER': 'postgres',
         'PASSWORD': 'xjbc1u64',
-        'HOST': 'localhost',  
+        'HOST': '127.0.0.1',  
         'PORT': '5432',    
     }
 }
